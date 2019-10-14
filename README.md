@@ -1,6 +1,6 @@
 # phpFrejaeid
 
-Simple PHP wrapper to talk to [Freja eID](https://frejaeid.com/en/developers-section/) for use both in test and production.
+Simple PHP wrapper to talk to [Freja eID](https://frejaeid.com/en/developers-section/) [REST API](https://frejaeid.com/rest-api/Freja%20eID%20Relying%20Party%20Developers'%20Documentation.html) for use both in test and production enviroment.
 
 - Supports validation of the JWS but requires external library for that part.
 - Supports both directed and inferred authentication, for use with qr-code and app.
