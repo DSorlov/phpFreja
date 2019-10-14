@@ -13,6 +13,10 @@ Simple PHP wrapper to talk to [Freja eID](https://frejaeid.com/en/developers-sec
 ```PHP
 $testAuth = new frejaeID(getcwd().'/testCertificate.pfx','SuperSecretPassword',false);
 ```
+### Create URL for QR-Code
+```PHP
+$qrInfo = $frejaID->createAuthQRCode();
+```
 
 ### Init, monitor and cancel authentication request
 ```PHP
