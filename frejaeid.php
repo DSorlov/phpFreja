@@ -3,6 +3,7 @@
  
         private $production;
         private $serviceUrl;
+        private $resourceUrl;
         private $certificate;
         private $password;
         private $currentAuth;
@@ -10,10 +11,13 @@
   
         public function __construct($certificate,$password,$production=false,$jwtCert=null){ 
             $this->production = $production;
-            if ($production)
+            if ($production) {
                 $this->serviceUrl = 'https://services.prod.frejaeid.com';
-            else
+                $this->resourceUrl = 'https://resources.prod.frejaeid.com';
+            } else {
                 $this->serviceUrl = 'https://services.test.frejaeid.com';
+                $this->resourceUrl = 'https://resources.test.frejaeid.com';
+            }
                 
             if (!is_readable($certificate))
                 throw new Exception('Certificate file could not be found');
@@ -28,9 +32,28 @@
                     $this->jwtCert = $jwtCert;
         }
         
-	private function IsNullOrEmptyString($input){
-    		return (!isset($input) || trim($input)==='');
-	}
+        private function IsNullOrEmptyString($input){
+                return (!isset($input) || trim($input)==='');
+        }
+
+        public function createAuthQRCode($existingCode=NULL) {
+            
+            if ($this->IsNullOrEmptyString($existingCode)) {
+                
+                $response = $this->initAuthentication();
+                if (isset($response->authRef))
+                    $existingCode = $response->authRef;
+                else
+                    throw new Exception('Could not create authentication reference');
+                
+            }
+
+            $qrObject = new \stdClass();
+            $qrObject->url = $this->resourceUrl . "/qrcode/generate?qrcodedata=frejaeid%3A%2F%2FbindUserToTransaction%3Fdimension%3D4x%3FtransactionReference%3D" . $existingCode;
+            $qrObject->authRef = $existingCode;
+            
+            return $qrObject;
+        }
 
         public function cancelAuthentication($authRef) {
             $query = new \stdClass(); $query->authRef = $authRef;
@@ -199,8 +222,6 @@
                 $query->signatureType = "EXTENDED";
             }
             
-
-echo var_dump($query);
             $apiPost = array(
                 "initSignRequest" => base64_encode(json_encode($query))
             );
@@ -269,7 +290,7 @@ echo var_dump($query);
                 CURLOPT_TIMEOUT             => 30,
                 CURLOPT_MAXREDIRS           => 2,
                 CURLOPT_HTTPHEADER          => $apiHeader,
-                CURLOPT_USERAGENT           => 'phpFrejaeid/0.1',
+                CURLOPT_USERAGENT           => 'phpFreja/0.1',
                 CURLOPT_POSTFIELDS          => $apiPostQuery,
                 CURLOPT_SSLCERTTYPE         => 'P12',
                 CURLOPT_SSLCERT             => $this->certificate,
@@ -286,5 +307,5 @@ echo var_dump($query);
         
         
     }
-   
+
 ?>
