@@ -1,8 +1,8 @@
-# phpFrejaeid
+# phpFreja
 
 Simple PHP wrapper to talk to [Freja eID](https://frejaeid.com/en/developers-section/) [REST API](https://frejaeid.com/rest-api/Freja%20eID%20Relying%20Party%20Developers'%20Documentation.html) for use both in test and production enviroment.
 
-- Supports validation of the JWS but requires external library for that part (thanks to [php-jws](https://github.com/Gamegos/php-jws).
+- Supports validation of the JWS but requires external library for that part (thanks to [php-jws](https://github.com/Gamegos/php-jws)).
 - Supports both directed and inferred authentication, for use with qr-code and app.
 - Supports authentication and signature api but not the assertion service.
 - Well behaved functions that do not throw (atleast not by design) but always return objects for simpler handling.
