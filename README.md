@@ -2,16 +2,17 @@
 
 Simple PHP wrapper to talk to [Freja eID](https://frejaeid.com/en/developers-section/) [REST API](https://frejaeid.com/rest-api/Freja%20eID%20Relying%20Party%20Developers'%20Documentation.html) for use both in test and production enviroment.
 
-- Supports validation of the JWS but requires external library for that part.
+- Supports validation of the JWS but requires external library for that part (thanks to [php-jws](https://github.com/Gamegos/php-jws).
 - Supports both directed and inferred authentication, for use with qr-code and app.
 - Supports authentication and signature api but not the assertion service.
+- Well behaved functions that do not throw (atleast not by design) but always return objects for simpler handling.
 - Not developed, supported or endorsed by Verisec.
 
 ## Example
 
 ### Init connection to API (test)
 ```PHP
-$testAuth = new frejaeID(getcwd().'/testCertificate.pfx','SuperSecretPassword',false);
+$testAuth = new phpFreja(getcwd().'/testCertificate.pfx','SuperSecretPassword',false);
 ```
 ### Create URL for QR-Code
 ```PHP
