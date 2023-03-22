@@ -8,7 +8,11 @@ The format is based on [Keep a Changelog][keep-a-changelog]
 ## [Unreleased]
 - Nothing right now
 
-## [1.0] (2012-05-02)
+## [1.1] (2023-03-22)
+- Impelented new keys for jwt 2023
+- Fixed [#2](https://github.com/DSorlov/phpFreja/issues/2)
+
+## [1.0] (2020-05-02)
 
 ### BREAKING CHANGES
 - Renamed the main class from 'frejaeID' to new name 'phpFreja'
@@ -28,5 +32,6 @@ The format is based on [Keep a Changelog][keep-a-changelog]
 - Initial releases
 
 [keep-a-changelog]: http://keepachangelog.com/en/1.0.0/
+[1.1]: https://github.com/DSorlov/phpFreja/releases/tag/v1.1
 [1.0]: https://github.com/DSorlov/phpFreja/releases/tag/v1.0
 [0.1]: https://github.com/DSorlov/phpFreja
