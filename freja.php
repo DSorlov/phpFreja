@@ -26,7 +26,7 @@ class phpFreja {
             $this->serviceUrl = 'https://services.test.frejaeid.com';
             $this->resourceUrl = 'https://resources.test.frejaeid.com';
 
-            if (!is_readable(getcwd()."/freja_test.pem"))
+            if (!is_readable(__DIR__."/freja_test.pem"))
                 throw new Exception('JWS Certificate file could not be found ('.__DIR__.'/freja_test.pem)');
             else
                 $this->jwsCert = file_get_contents(__DIR__."/freja_test.pem");
